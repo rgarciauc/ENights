@@ -1,0 +1,28 @@
+@startuml classDiagram
+class Hotel {
+    - id: Long
+    - hotelRooms: List<HotelRoom>
+    + createHotelRoom(roomSize: RoomSize: boolean ,hasMinibar: boolean)
+    + readHotelRoom(idHotelRoom: Long): HotelRoom
+    + showListHotelRoom(): List<HotelRoom>
+    + getFreeHotelRooms(): List<HotelRoom>
+    + updateRoom(idHotelRoom: Long): boolean
+    + deleteHotelRoom(idHotelRoom: Long): void
+} 
+
+class HotelRoom {
+    - idHotelRoom: Long
+    - roomSize: RoomSize
+    - hasMinibar: boolean
+    - isFree: boolean
+    + HotelRoom(): void
+    + HotelRoom(roomSize: RoomSize, hasMinibar: boolean): void
+}
+
+enum RoomSize {
+    SINGLEROOM, DOUBLEROOM, SUITE
+}
+
+Hotel  "many" *-- "0" HotelRoom
+HotelRoom *-- RoomSize
+@enduml
