@@ -1,0 +1,32 @@
+
+POST http://localhost:8080/api/hotel/rooms?roomSize=SINGLE&hasMinibar=true HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/api/hotel/rooms?roomSize=SUITE&hasMinibar=true HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/api/hotel/rooms/101?roomSize=SUITE&hasMinibar=false&isFree=false HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/api/hotel/rooms/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "hasMinibar": false
+}
+
+###
+
+PUT http://localhost:8080/api/hotel/rooms/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "hasMinibar": false,
+    "isFree": false
+}
