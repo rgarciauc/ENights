@@ -10,24 +10,25 @@ import com.garcia.hotelmanager.model.RoomSize;
 import com.garcia.hotelmanager.service.HotelService;
 
 @Component
-public class DataInitializer implements CommandLineRunner{
-	
+public class DataInitializer implements CommandLineRunner {
+
 	@Autowired
 	private HotelRoomRepository hotelRoomRepository;
-	@Autowired
-	private HotelRepository hotelRepository;
 	
 	@Autowired
-    private HotelService hotelService;
+	private HotelRepository hotelRepository;
+
+	@Autowired
+	private HotelService hotelService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		hotelRoomRepository.deleteAll();
 		hotelRepository.deleteAll();
-		
+
 		hotelService.createHotelRoom(RoomSize.DOUBLE, true);
 		hotelService.createHotelRoom(RoomSize.SINGLE, true);
-	    hotelService.createHotelRoom(RoomSize.SUITE, false);
+		hotelService.createHotelRoom(RoomSize.SUITE, false);
 	}
 
 }
