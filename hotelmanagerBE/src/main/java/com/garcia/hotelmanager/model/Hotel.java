@@ -15,7 +15,6 @@ import jakarta.persistence.OneToMany;
 public class Hotel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
@@ -27,6 +26,11 @@ public class Hotel {
 	private List<HotelRoom> hotelRooms;
 
 	public Hotel() {
+	}
+	
+	public Hotel(long id, String name) {
+		this.id = id; 
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -53,36 +57,7 @@ public class Hotel {
 		this.location = location;
 	}
 
-	public List<HotelRoom> getHotelRooms() {
-		return hotelRooms;
-	}
-
 	public void setHotelRooms(List<HotelRoom> hotelRooms) {
 		this.hotelRooms = hotelRooms;
 	}
-
-	public boolean createHotelRoom(RoomSize roomSize, boolean hasMinibar) {
-		HotelRoom hotelRoom = new HotelRoom(roomSize, hasMinibar);
-		return hotelRooms.add(hotelRoom);
-	}
-
-	public HotelRoom readHotelRoom(Long idHotelRoLong) {
-		return null;
-	}
-
-	public List<HotelRoom> showListHotelRoom() {
-		return null;
-	}
-
-	public List<HotelRoom> getFreeHotelRooms() {
-		return null;
-	}
-
-	public boolean updateRoom(Long idHotelRoom) {
-		return false;
-	}
-
-	public void deleteHotelRoom() {
-	}
-
 }

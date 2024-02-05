@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.garcia.hotelmanager.dao.HotelRepository;
 import com.garcia.hotelmanager.model.HotelRoom;
 import com.garcia.hotelmanager.model.RoomSize;
 import com.garcia.hotelmanager.service.HotelService;

@@ -24,7 +24,6 @@ public class HotelRoom {
 
 	@ManyToOne
 	@JoinColumn(name = "hotel_id")
-	@JsonIgnore
 	private Hotel hotel;
 	
 	public HotelRoom() {}

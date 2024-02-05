@@ -20,9 +20,9 @@
         <label for="roomSize">Availability:</label>
         <input v-model="editedRoom.isFree" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"/>
         
-        <button @click.prevent="toggleEditMode" class="bg-grey-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cancel</button>
+        <button @click.prevent="toggleEditMode" class="bg-grey-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded">Cancel</button>
 
-        <button type="submit" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Changes</button>
+        <button type="submit" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4  my-4 rounded">Save Changes</button>
       </form>
     </div>
   </div>

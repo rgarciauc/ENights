@@ -10,14 +10,13 @@
                 <input type="checkbox" v-model="showOnlyFreeRooms" />
             </label>
             <div class="flex flex-col items-center bg-slate-700">
-                <HotelRoomCard 
-                class ="min-w-96"
-                v-for="hotelRoom in filteredRooms" :key="hotelRoom.id" :hotel-room="hotelRoom"
-                    :is-new-room="hotelRoom === newHotelRoom" @update-hotel-room="updateHotelRoom" />
-
-                <!-- Button to add a new hotel room -->
+                <div class="my-6">
+                    <HotelRoomCard class="min-w-96" v-for="hotelRoom in filteredRooms" :key="hotelRoom.id"
+                        :hotel-room="hotelRoom" :is-new-room="hotelRoom === newHotelRoom"
+                        @update-hotel-room="updateHotelRoom" />
+                </div>
                 <button @click="addNewHotelRoom"
-                    class="flex-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center">
+                    class="flex-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center my-6">
                     Add Room
                 </button>
             </div>

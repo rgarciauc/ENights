@@ -12,9 +12,11 @@ import com.garcia.hotelmanager.service.HotelService;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
+	public static final Long HOTEL_ID = 101L;
+
 	@Autowired
 	private HotelRoomRepository hotelRoomRepository;
-	
+
 	@Autowired
 	private HotelRepository hotelRepository;
 
@@ -23,8 +25,11 @@ public class DataInitializer implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		hotelRoomRepository.deleteAll();
 		hotelRepository.deleteAll();
+
+		hotelService.createHotel(HOTEL_ID, "eXXellent Nights!");
 
 		hotelService.createHotelRoom(RoomSize.DOUBLE, true);
 		hotelService.createHotelRoom(RoomSize.SINGLE, true);

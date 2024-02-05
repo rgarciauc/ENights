@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.garcia.hotelmanager.DataInitializer;
 import com.garcia.hotelmanager.dao.HotelRepository;
 import com.garcia.hotelmanager.dao.HotelRoomRepository;
+import com.garcia.hotelmanager.model.Hotel;
 import com.garcia.hotelmanager.model.HotelRoom;
 import com.garcia.hotelmanager.model.RoomSize;
 import com.garcia.hotelmanager.service.HotelService;
@@ -19,6 +21,12 @@ public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	private HotelRoomRepository hotelRoomRepository;
+	
+	@Override
+	public Optional<Hotel> createHotel(long id, String name) {
+		Hotel hotel = new Hotel(id, name);
+		return Optional.ofNullable(hotelRepository.save(hotel));
+	}
 
 	@Override
 	public List<HotelRoom> showListHotelRoom() {
@@ -38,8 +46,16 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public Optional<HotelRoom> createHotelRoom(RoomSize roomSize, boolean hasMinibar) {
-		HotelRoom hotelRoom = new HotelRoom(roomSize, hasMinibar);
-		return Optional.ofNullable(hotelRoomRepository.save(hotelRoom));
+		Optional<Hotel> existingHotel = hotelRepository.findById(DataInitializer.HOTEL_ID);
+		
+		if(existingHotel.isPresent()) {
+			Hotel hotel = existingHotel.get();
+			HotelRoom hotelRoom = new HotelRoom(roomSize, hasMinibar);
+			hotelRoom.setHotel(hotel);
+			return Optional.ofNullable(hotelRoomRepository.save(hotelRoom));
+		} else {
+			return Optional.empty();
+		}
 	}
 
 	@Override
