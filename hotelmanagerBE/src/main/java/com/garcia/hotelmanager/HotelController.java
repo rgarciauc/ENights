@@ -22,7 +22,7 @@ import com.garcia.hotelmanager.service.HotelService;
 
 @RestController
 @RequestMapping("/api/hotel")
-@CrossOrigin(origins = "localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HotelController {
 	@Autowired
 	private HotelService hotelService;
