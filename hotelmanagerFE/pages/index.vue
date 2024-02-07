@@ -34,8 +34,7 @@
             <div class="flex flex-col items-center bg-slate-700">
                 <div class="my-6">
                     <HotelRoomCard class="min-w-96" v-for="hotelRoom in filteredRooms" :key="hotelRoom.id"
-                        :hotel-room="hotelRoom" :is-new-room="hotelRoom === newHotelRoom"
-                        @update-hotel-room="updateHotelRoom" />
+                        :hotel-room="hotelRoom" :is-new-room="editMode" @update-hotel-room="updateHotelRoom" />
                 </div>
                 <button @click="addNewHotelRoom"
                     class="flex-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center my-6">
@@ -56,7 +55,8 @@
     async asyncData({ $axios }) {
         try {
           const url = '/api/hotel/rooms';
-          const response = await $axios.get(url);
+          const timeoutDuration = 4000;
+          const response = await $axios.get(url, {timeout: timeoutDuration});
           console.log('Response:', response.data);
           return { rooms: response.data };
         } catch (error) {
@@ -117,8 +117,8 @@
                 }}
                 );
                 const newRoom = response.data;
-                this.rooms.push(newRoom);
                 this.editMode = true;
+                this.rooms.push(newRoom);
                 this.editedRoom = { ...newRoom };
             } catch (error){
                 console.error('Error creating new Room:', error);
