@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS hotelmanager;
+
+GRANT ALL PRIVILEGES ON DATABASE hotelmanager TO garcia;
