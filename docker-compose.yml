@@ -4,11 +4,12 @@ services:
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_USER: garcia
-      POSTGRES_PASSWORD: localhost
-      POSTGRES_DB: hotelmanager
+      - POSTGRES_USER=garcia
+      - POSTGRES_PASSWORD=my_password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "127.0.0.1::5432"
+      - "5432:5432"
 
   spring-boot-server:
     build:
@@ -18,14 +19,15 @@ services:
     depends_on:
       - postgres
     environment:
+      SPRING_BOOT_SERVER_URL: http://spring-boot-server:8080
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hotelmanager
       SPRING_DATASOURCE_USERNAME: garcia
-      SPRING_DATASOURCE_PASSWORD: localhost
-      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_DATASOURCE_PASSWORD: my_password
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-    volumes:
-      - .m2:/root/.m2
+
   nuxtjs-client:
+    environment:
+      - SPRING_BOOT_SERVER_URL=http://spring-boot-server:8080
     build:
       context: ./hotelmanagerFE
     ports:
