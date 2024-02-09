@@ -34,8 +34,13 @@ public class HotelController {
 	}
 
 	@GetMapping("/rooms")
-	public List<HotelRoom> showListHotelRoom() {
-		return hotelService.showListHotelRoom();
+	public ResponseEntity<List<HotelRoom>> showListHotelRoom() {
+		List<HotelRoom> hotelRooms = hotelService.getListHotelRoom();
+		if (hotelRooms.isEmpty()) {
+	        return ResponseEntity.notFound().build();
+	    } else {
+	        return ResponseEntity.ok(hotelRooms);
+	    }
 	}
 
 	@GetMapping("/rooms/free")

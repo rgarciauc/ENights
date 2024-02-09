@@ -8,7 +8,7 @@ import com.garcia.hotelmanager.model.HotelRoom;
 import com.garcia.hotelmanager.model.RoomSize;
 
 public interface HotelService {
-	public List<HotelRoom> showListHotelRoom();
+	public List<HotelRoom> getListHotelRoom();
 
 	public List<HotelRoom> getFreeHotelRooms();
 
